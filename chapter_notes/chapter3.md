@@ -1,5 +1,5 @@
 # CHAPTER 3: Django Basics
-##Overview:
+## Overview:
 ### Creating a new Django Project
 1. To create the project, run `python django-admin.py startpoject <name>` where `name` is the name of the project you wish to create
 ###Creating a new Django App
