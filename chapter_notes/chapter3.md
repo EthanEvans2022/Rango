@@ -1,4 +1,13 @@
 # CHAPTER 3: Django Basics
+##Overview:
+### Creating a new Django Project
+1. To create the project, run `python django-admin.py startpoject <name>` where `name` is the name of the project you wish to create
+###Creating a new Django App
+1. To create a new app, run `python manage.py startapp <appname>`, where <appname> is the name of the app you wish to create
+2. Tell your Django project about the new app by adding it to the `INSTALLED_APPS` tuple in the project's `settings.py` file
+3. In the project `urls.py` file, add a mapping to the app
+4. In your app;s directory, create a `urls.py` file to direct incoming URL strings to views
+6. In your app's `view.py`, create the required views ensuring that they return a `HttpResponse` object
 ## 3.1: Testing Your Setup
 - Check that you have the right versions of Python and Django in the virtual environment
 - Check that django can be imported by quickly testing it in the Python interpreter
@@ -74,4 +83,15 @@ python
 - Then specify how the app will handle such requests
 - The `urlpatterns` is a list in `urls.py`, and adding the above example looks for URL strings that match that pattern (through the use of regular expressions)
 - When a match is made, the rest of the URL string is passed onto the app specificed in the `include()` function (which comes from the `django.urls` package)
+
 ![Diagram that shows how URL strings are passed and handled through the project](images/url_passing.png)
+
+
+- The chaining process first strips out the domain, leaving `/rango/about` and passed along to the `tango_with_django` project
+- Then, `range/` is stripped, leavin `about/` to be handled by rango
+- We need to create a new file called `urls.py` in the `rango` app directory to handle the remaining URL string 
+- When we talk about URL strings, it is assumed the host portion has been stripped off already
+    - Ex: Given `http://127.0.0.1:8000/rango/about`, Django will handle `/rango/about/` part of the URL string
+- Django's `path` function takes a regex string to match, what view to call if the string is matched, and an optional *name*, which provides a convenient name to refer to the view and is useful later on for **reverse URL matching**, which allows you to reference the URL mapping by name rather than by the URL (which also will use the `app_name` variable
+- Restart the dev server and visit the new app, and if all went well the app should display the view
+- For now, the URL mappings are rather simple, but as the tutorial moves on move complex and parameterised URL mappings will be implemented
