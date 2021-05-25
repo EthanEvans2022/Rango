@@ -4,11 +4,11 @@
 - Check that django can be imported by quickly testing it in the Python interpreter
 `
 python 
->>>
->>> import django
->>> django.get_version()
+\>\>\>
+\>\>\> import django
+\>\>\> django.get_version()
 \'3.7.7\'
->>> exit()
+\>\>\> exit()
 `
 ## 3.2: Creating Your Django Project
 - To create a new Django project, go to the workspace directory and enter:
@@ -63,8 +63,15 @@ python
 - For someone to see a view, you have to mape a URL to the view
 - Go to `urls.py` in the project configurations directory and import the views script from the app your using (for tutorial sake, `rango`)
     - `from <app> import views`
-- Then add the following to `urlpatterns`:
-    -`path('', views.index, name='index'),`
+- Then add the following to `urlpatterns`\: `path('', views.index, name='index'),`
     - This maps the basic URL to the `index` view defined in the `rango` app
 
 ## 3.5: Mapping URLs
+- We can change how we map URLs to views to make the app more modular (and thus re-usable)
+- First, modify the `urls.py` to have it point to the app for any specific app requests
+    - Ex: `path('rango/', include('rango.urls')),` 
+    - This maps any URLs starting with `rango/` to be handled by the rango app
+- Then specify how the app will handle such requests
+- The `urlpatterns` is a list in `urls.py`, and adding the above example looks for URL strings that match that pattern (through the use of regular expressions)
+- When a match is made, the rest of the URL string is passed onto the app specificed in the `include()` function (which comes from the `django.urls` package)
+![Diagram that shows how URL strings are passed and handled through the project](/images/url_handling.png)
