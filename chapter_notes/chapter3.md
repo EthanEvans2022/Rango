@@ -74,4 +74,4 @@ python
 - Then specify how the app will handle such requests
 - The `urlpatterns` is a list in `urls.py`, and adding the above example looks for URL strings that match that pattern (through the use of regular expressions)
 - When a match is made, the rest of the URL string is passed onto the app specificed in the `include()` function (which comes from the `django.urls` package)
-![Diagram that shows how URL strings are passed and handled through the project](./images/url_handling.png)
+![Diagram that shows how URL strings are passed and handled through the project](images/url_handling.png)
