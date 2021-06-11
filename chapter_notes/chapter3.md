@@ -2,7 +2,7 @@
 ## Overview:
 ### Creating a new Django Project
 1. To create the project, run `python django-admin.py startpoject <name>` where `name` is the name of the project you wish to create
-###Creating a new Django App
+### Creating a new Django App
 1. To create a new app, run `python manage.py startapp <appname>`, where <appname> is the name of the app you wish to create
 2. Tell your Django project about the new app by adding it to the `INSTALLED_APPS` tuple in the project's `settings.py` file
 3. In the project `urls.py` file, add a mapping to the app

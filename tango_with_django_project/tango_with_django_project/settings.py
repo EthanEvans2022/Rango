@@ -11,10 +11,14 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+#Imported for getting local paths regardless of OS
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+BASE_DIR = Path(__file__).resolve().parent.parent  #Path to the larger project folder
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates') #Path to the template subdirectory
+STATIC_DIR = os.path.join(BASE_DIR, 'static')      #Path to the static subdirectory
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -40,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #Each new app will be added here
     'rango',
 ]
 
@@ -58,18 +63,20 @@ ROOT_URLCONF = 'tango_with_django_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        #'DIRS' key is for all directories where templates live, allowing Django to find them
+        'DIRS': [TEMPLATE_DIR,], 'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'tango_with_django_project.wsgi.application'
 
@@ -120,8 +127,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_URL = '/static/'
+#Setting that specifies where static files will be stored and where Django can find them
+STATICFILES_DIRS = [STATIC_DIR,]
+
+# Media files (user uploaded)
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
